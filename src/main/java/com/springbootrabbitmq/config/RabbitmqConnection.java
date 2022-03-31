@@ -1,6 +1,7 @@
 package com.springbootrabbitmq.config;
 
-import com.springbootrabbitmq.constants.RabbitmqConstants;
+
+import constants.RabbitmqConstants;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.DirectExchange;
@@ -13,7 +14,7 @@ import javax.annotation.PostConstruct;
 @Component
 public class RabbitmqConnection {
 
-    private static final String NOME_EXCHANGE = "AMQ.DIRECT";
+    private static final String NAME_EXCHANGE = "AMQ.DIRECT";
 
     private AmqpAdmin amqpAdmin;
 
@@ -26,11 +27,11 @@ public class RabbitmqConnection {
     }
 
     private DirectExchange directExchange() {
-        return new DirectExchange(NOME_EXCHANGE);
+        return new DirectExchange(NAME_EXCHANGE);
     }
 
-    private Binding relationship(Queue queue, DirectExchange directExchange) {
-        return new  Binding(queue.getName(), Binding.DestinationType.QUEUE, directExchange().getName(), queue.getName(), null);
+    private Binding relationship(Queue queue, DirectExchange exchange) {
+        return new  Binding(queue.getName(), Binding.DestinationType.QUEUE, exchange.getName(), queue.getName(), null);
     }
 
     @PostConstruct
