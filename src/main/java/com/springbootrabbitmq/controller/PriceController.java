@@ -1,5 +1,6 @@
 package com.springbootrabbitmq.controller;
 
+
 import com.springbootrabbitmq.service.RabbitmqService;
 import constants.RabbitmqConstants;
 import dto.PriceDto;
